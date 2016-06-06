@@ -1,8 +1,7 @@
-package com.suntabu.animation;
+package animation;
 
 import android.graphics.Matrix;
 import android.graphics.Rect;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;

@@ -1,4 +1,4 @@
-package com.suntabu.animation;
+package animation;
 
 import android.app.Activity;
 import android.content.Context;
@@ -75,7 +75,7 @@ public class BaseEffect {
 
                             FittingAnimationCurve posPath = new FittingAnimationCurve(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT);
                             FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1);
-//                            com.suntabu.animation.FittingPath rotatePath = new com.suntabu.animation.FittingPath(rotateValues, 1, 1);
+//                            FittingPath rotatePath = new FittingPath(rotateValues, 1, 1);
 
 
                             RTSAnimation rts = new RTSAnimation(posPath, scalePath, null, mGiv,width,height);

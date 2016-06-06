@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 // JitPack Maven
 apply plugin: 'com.github.dcendents.android-maven'
 // Your Group
-group='com.github.suntabu'
+group = 'com.github.suntabu'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -25,4 +25,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.google.code.gson:gson:2.6.2'
 }

@@ -1,4 +1,4 @@
-package com.suntabu.animation;
+package animation;
 
 import android.graphics.Path;
 import android.graphics.PathMeasure;

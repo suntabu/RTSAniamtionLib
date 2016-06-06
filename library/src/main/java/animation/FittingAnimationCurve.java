@@ -1,4 +1,4 @@
-package com.suntabu.animation;
+package animation;
 
 import android.util.Log;
 

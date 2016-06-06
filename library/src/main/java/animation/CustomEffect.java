@@ -1,4 +1,4 @@
-package com.suntabu.animation;
+package animation;
 
 /**
  * Created by gouzhun on 2016/5/25.
