@@ -1,16 +1,19 @@
 package test.suntabu.com.rtsanimationtest;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.suntabu.animation.animation.AnimationMgr;
+import animation.AnimationInfoBean;
+import animation.AnimationMgr;
+
 
 public class MainActivity extends AppCompatActivity {
     private TextView tv1;
     private FrameLayout container;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 AnimationMgr.getInstance().init(MainActivity.this, container);
 
 
-                AnimationMgr.getInstance().renderAnimation("kiss");
+                AnimationMgr.getInstance().renderAnimation(new AnimationInfoBean("kiss"));
             }
         });
     }
