@@ -1,4 +1,4 @@
-package test.suntabu.com.rtsanimationtest;
+package com.suntabu.animation;
 
 /**
  * Created by gouzhun on 2016/6/6.

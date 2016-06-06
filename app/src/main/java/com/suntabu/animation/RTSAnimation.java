@@ -1,4 +1,4 @@
-package test.suntabu.com.rtsanimationtest;
+package com.suntabu.animation;
 
 import android.graphics.Matrix;
 import android.graphics.Rect;
@@ -14,8 +14,8 @@ import android.widget.FrameLayout;
  */
 public class RTSAnimation extends Animation {
 
-    private FittingPath translateMeasure, rotateMeasure;
-    private FittingAnimationCurve scaleMeasure;
+    private FittingPath  rotateMeasure;
+    private FittingAnimationCurve scaleMeasure,translateMeasure;
     private float[] pos = new float[2];
     private float[] scale = new float[2];
     private float[] rotate = new float[2];
@@ -24,7 +24,7 @@ public class RTSAnimation extends Animation {
     private View mView;
     private Rect rect;
 
-    public RTSAnimation(FittingPath translatePath, FittingAnimationCurve scalePath, FittingPath rotatePath, View view, int width, int height) {
+    public RTSAnimation(FittingAnimationCurve translatePath, FittingAnimationCurve scalePath, FittingPath rotatePath, View view, int width, int height) {
         translateMeasure = translatePath;
         scaleMeasure = scalePath;
         rotateMeasure = rotatePath;
@@ -42,7 +42,7 @@ public class RTSAnimation extends Animation {
 
     @Override
     protected void applyTransformation(float interpolatedTime, Transformation t) {
-        Log.i("", centerX + " | " + centerY);
+//        Log.i("", centerX + " | " + centerY);
         super.applyTransformation(interpolatedTime, t);
         Matrix matrix = t.getMatrix();
         pos = translateMeasure.getValue(interpolatedTime);

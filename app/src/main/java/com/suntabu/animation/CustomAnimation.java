@@ -1,4 +1,4 @@
-package test.suntabu.com.rtsanimationtest;
+package com.suntabu.animation;
 
 import android.content.Context;
 import android.view.ViewGroup;

@@ -1,6 +1,4 @@
-package test.suntabu.com.rtsanimationtest;
-
-import android.util.Log;
+package com.suntabu.animation;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,13 +39,19 @@ public class AnimationCurve {
         for (int i = 0; i < frames.size(); i++) {
 
             KeyFrame kf = frames.get(i);
-            Log.i("", "x " + kf.x);
             if (kf.x >= t) {
                 if (i - 1 >= 0) {
                     KeyFrame pre = frames.get(i - 1);
 
                     float xdelta = kf.x - pre.x;
-                    float value = xdelta != 0 ? (kf.y - pre.y) * (t - pre.x) / xdelta : kf.y;
+                    float ydelta = kf.y - pre.y;
+                    if (ydelta == 0 || xdelta == 0) {
+                        return kf.y;
+                    }
+
+                    float k = ydelta / xdelta;
+
+                    float value = k * (t - pre.x) + kf.y;
                     return value;
                 } else {
                     return kf.y;

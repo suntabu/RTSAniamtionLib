@@ -1,4 +1,4 @@
-package test.suntabu.com.rtsanimationtest;
+package com.suntabu.animation;
 
 import android.graphics.Path;
 import android.graphics.PathMeasure;

@@ -1,11 +1,10 @@
-package test.suntabu.com.rtsanimationtest;
+package com.suntabu.animation;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Path;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -74,9 +73,9 @@ public class BaseEffect {
                             //启动动画
                             mGiv.setVisibility(View.VISIBLE);
 
-                            FittingPath posPath = new FittingPath(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT);
+                            FittingAnimationCurve posPath = new FittingAnimationCurve(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT);
                             FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1);
-//                            test.suntabu.com.rtsanimationtest.FittingPath rotatePath = new test.suntabu.com.rtsanimationtest.FittingPath(rotateValues, 1, 1);
+//                            com.suntabu.animation.FittingPath rotatePath = new com.suntabu.animation.FittingPath(rotateValues, 1, 1);
 
 
                             RTSAnimation rts = new RTSAnimation(posPath, scalePath, null, mGiv,width,height);

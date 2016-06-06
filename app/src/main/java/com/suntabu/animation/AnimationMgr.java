@@ -1,4 +1,4 @@
-package test.suntabu.com.rtsanimationtest;
+package com.suntabu.animation;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -8,8 +8,6 @@ import android.widget.FrameLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;

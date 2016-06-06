@@ -1,4 +1,4 @@
-package test.suntabu.com.rtsanimationtest;
+package com.suntabu.animation;
 
 import android.util.Log;
 
@@ -17,11 +17,8 @@ public class FittingAnimationCurve {
     private int mXRatio;
     private int mYRatio;
 
-    private float[] xValue = new float[2];
-    private float[] yValue = new float[2];
 
 
-    private float xMax, yMax;
 
     public FittingAnimationCurve(ArrayList<Float> values, int xRatio, int yRatio) {
         mValues = values;
@@ -31,9 +28,6 @@ public class FittingAnimationCurve {
         xPhasePath = new AnimationCurve();
         yPhasePath = new AnimationCurve();
 
-
-        xMax = Float.MIN_VALUE;
-        yMax = Float.MIN_VALUE;
 
         initData();
 
@@ -47,13 +41,6 @@ public class FittingAnimationCurve {
                 float y = mValues.get(i + 1) * mYRatio;
                 float t = mValues.get(i + 2);
 
-                if (x >= xMax) {
-                    xMax = x;
-                }
-
-                if (y >= yMax) {
-                    yMax = y;
-                }
 
                 xPhasePath.addKeyFrame(new KeyFrame(t, x));
                 yPhasePath.addKeyFrame(new KeyFrame(t, y));
@@ -62,7 +49,6 @@ public class FittingAnimationCurve {
 
     }
 
-    private float[] lastValue;
 
     public float[] getValue(float t) {
         float[] values = new float[2];
@@ -71,30 +57,9 @@ public class FittingAnimationCurve {
         values[1] = yPhasePath.evaluate(t);
 
         Log.i("", "values: " + values[0] + "    |    " + values[1]);
-        lastValue = values;
         return values;
     }
 
-    public float[] getDeltaValue(float t) {
-        if (lastValue == null) {
-            lastValue = getValue(0);
-        }
 
-        float x = lastValue[0];
-        float y = lastValue[1];
-
-        float[] vals = getValue(t);
-
-        float[] deltaValues = new float[]{vals[0] - x, vals[1] - y};
-        return deltaValues;
-
-    }
-
-    public float[] getLastValue() {
-        if (lastValue == null) {
-            lastValue = getValue(0);
-        }
-        return lastValue;
-    }
 
 }
