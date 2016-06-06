@@ -68,7 +68,7 @@ public class AnimationMgr {
                         ((Activity) context).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Log.i(TAG, "render anim :" + aib.animationName);
+                                LogMgr.i(TAG, "render anim :" + aib.animationName);
                                 renderAnimation(aib.animationName);
                             }
                         });
@@ -83,7 +83,7 @@ public class AnimationMgr {
     }
 
     public void renderAnimation(AnimationInfoBean aib) {
-        Log.i(TAG, "add anim :" + aib.animationName);
+        LogMgr.i(TAG, "add anim :" + aib.animationName);
         queueAnimation.add(aib);
     }
 
@@ -94,14 +94,14 @@ public class AnimationMgr {
             @Override
             public void invoke() {
                 currentAnim = null;
-                Log.i(TAG, "animation end");
+                LogMgr.i(TAG, "animation end");
             }
         });
     }
 
 
     private CustomAnimation spawnAniamtion(String animationName) {
-        Log.i(TAG, animationParameterBeanHashMap.size() + "   " + animationName + "   " + animationName.hashCode());
+        LogMgr.i(TAG, animationParameterBeanHashMap.size() + "   " + animationName + "   " + animationName.hashCode());
         if (animationParameterBeanHashMap.containsKey(animationName.hashCode())) {
             CustomAnimation ca = new CustomAnimation(animationParameterBeanHashMap.get(animationName.hashCode()));
             ca.spawnEffects(context, mContainer);
