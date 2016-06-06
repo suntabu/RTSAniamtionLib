@@ -18,7 +18,6 @@ public class AnimationCurve {
     }
 
     public AnimationCurve(ArrayList<KeyFrame> frames) {
-
         this.frames = new ArrayList<>();
         this.frames.addAll(frames);
         sortOrder();
