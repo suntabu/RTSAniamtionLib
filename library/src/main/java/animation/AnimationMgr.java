@@ -1,10 +1,10 @@
 package animation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
 import android.widget.FrameLayout;
-
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,6 +21,9 @@ public class AnimationMgr {
     private static final String TAG = "AnimationMgr";
 
     //TODO:队列储存需要显示的动画
+
+    private ArrayList<AnimationInfoBean> queueAnimation;
+
     private Context context;
     private FrameLayout mContainer;
 
@@ -31,14 +34,11 @@ public class AnimationMgr {
     private HashMap<Integer, AnimationParameterBean> animationParameterBeanHashMap;
 
 
-
-
     private AnimationMgr() {
-        animationParameterBeanArrayList=new ArrayList<>();
-        animationParameterBeanHashMap=new HashMap<>();
+        animationParameterBeanArrayList = new ArrayList<>();
+        animationParameterBeanHashMap = new HashMap<>();
 
-
-
+        queueAnimation = new ArrayList<>();
     }
 
     private static AnimationMgr mInstance;
@@ -51,19 +51,52 @@ public class AnimationMgr {
     }
 
 
-    public void init(Context context, FrameLayout container) {
+    public void init(final Context context, FrameLayout container) {
         this.context = context;
         this.mContainer = container;
 
 
         AssetManager am = context.getResources().getAssets();
-        loadAnimationData(am,"animationData.json");
+        loadAnimationData(am, "animationData.json");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (queueAnimation.size() > 0 && currentAnim == null) {
+                        final AnimationInfoBean aib = queueAnimation.get(0);
+                        ((Activity) context).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.i(TAG, "render anim :" + aib.animationName);
+                                renderAnimation(aib.animationName);
+                            }
+                        });
+                        if (queueAnimation.size() > 0) {
+                            queueAnimation.remove(0);
+                        }
+
+                    }
+                }
+            }
+        }).start();
     }
 
-    public void renderAnimation(String animationName) {
+    public void renderAnimation(AnimationInfoBean aib) {
+        Log.i(TAG, "add anim :" + aib.animationName);
+        queueAnimation.add(aib);
+    }
+
+    private void renderAnimation(String animationName) {
         CustomAnimation ca = spawnAniamtion(animationName);
         currentAnim = ca;
-        ca.render();
+        ca.render(new Delegate() {
+            @Override
+            public void invoke() {
+                currentAnim = null;
+                Log.i(TAG, "animation end");
+            }
+        });
     }
 
 
@@ -105,4 +138,6 @@ public class AnimationMgr {
 
 
     }
+
+
 }

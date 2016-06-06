@@ -3,6 +3,7 @@ package animation;
 import android.content.Context;
 import android.view.ViewGroup;
 
+
 import java.util.ArrayList;
 
 /**
@@ -22,7 +23,7 @@ public class CustomAnimation {
 
 
     private float mCurrentElapsedTime = 0;
-
+    private int completedCount = 0;
 
     public CustomAnimation(AnimationParameterBean animationParameterBean) {
         effects = new ArrayList<>();
@@ -47,10 +48,17 @@ public class CustomAnimation {
         }
     }
 
-    public void render() {
-
+    public void render(final Delegate delegate) {
         for (int i = 0; i < effects.size(); i++) {
-            effects.get(i).render();
+            effects.get(i).render(new Delegate() {
+                @Override
+                public void invoke() {
+                    completedCount++;
+                    if (completedCount == effects.size()) {
+                        delegate.invoke();
+                    }
+                }
+            });
         }
 
        /* mCurrentElapsedTime = 0;

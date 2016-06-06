@@ -9,11 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 
 /**
@@ -28,7 +29,7 @@ public class BaseEffect {
 
     private int width, height;
 
-    protected ImageView mGiv;
+    protected GifImageView mGiv;
     /**
      * 当前动画执行的阶段（相对于Animation持续时间的百分比）
      */
@@ -56,9 +57,11 @@ public class BaseEffect {
 
     private Context context;
 
-    /****************************************************/
+    /**
+     * @param delegate
+     **************************************************/
 
-    public void render() {
+    public void render(final Delegate delegate) {
         if (mGiv == null) {
             return;
         }
@@ -75,10 +78,10 @@ public class BaseEffect {
 
                             FittingAnimationCurve posPath = new FittingAnimationCurve(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT);
                             FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1);
-//                            FittingPath rotatePath = new FittingPath(rotateValues, 1, 1);
+//                            test.suntabu.com.rtsanimationtest.FittingPath rotatePath = new test.suntabu.com.rtsanimationtest.FittingPath(rotateValues, 1, 1);
 
 
-                            RTSAnimation rts = new RTSAnimation(posPath, scalePath, null, mGiv,width,height);
+                            RTSAnimation rts = new RTSAnimation(posPath, scalePath, null, mGiv, width, height);
 //                    ScaleAnimation rts = new ScaleAnimation(0.3f,4.3f,0.5f,2.7f);
                             rts.setAnimationListener(new Animation.AnimationListener() {
                                 @Override
@@ -88,6 +91,7 @@ public class BaseEffect {
 
                                 @Override
                                 public void onAnimationEnd(Animation animation) {
+                                    delegate.invoke();
                                     mGiv.setVisibility(View.GONE);
                                     mContainer.removeView(mGiv);
                                     mGiv = null;
@@ -131,7 +135,7 @@ public class BaseEffect {
 
 
     public void createEffectView(Context context, ViewGroup parent) {
-        mGiv = new ImageView(context);
+        mGiv = new GifImageView(context);
         this.context = context;
         try {
             mContainer = parent;
@@ -139,8 +143,8 @@ public class BaseEffect {
             CONTAINER_HEIGHT = parent.getHeight();
             String path = "anim/" + effectName;
             if (path.toLowerCase().endsWith(".gif")) {
-              /*  GifDrawable gifFromAssets = new GifDrawable(context.getAssets(), path);
-                mGiv.setImageDrawable(gifFromAssets);*/
+                GifDrawable gifFromAssets = new GifDrawable(context.getAssets(), path);
+                mGiv.setImageDrawable(gifFromAssets);
             } else {
                 BitmapDrawable gifFromAssets = new BitmapDrawable(context.getAssets().open(path));
                 mGiv.setImageDrawable(gifFromAssets);

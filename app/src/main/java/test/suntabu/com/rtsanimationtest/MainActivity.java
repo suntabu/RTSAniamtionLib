@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.suntabu.animation.AnimationMgr;
+import com.suntabu.animation.animation.AnimationMgr;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tv1;
