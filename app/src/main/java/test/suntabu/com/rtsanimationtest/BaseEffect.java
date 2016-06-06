@@ -75,7 +75,7 @@ public class BaseEffect {
                             mGiv.setVisibility(View.VISIBLE);
 
                             FittingPath posPath = new FittingPath(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT);
-                            FittingPath scalePath = new FittingPath(scaleValues, 1, 1);
+                            FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1);
 //                            test.suntabu.com.rtsanimationtest.FittingPath rotatePath = new test.suntabu.com.rtsanimationtest.FittingPath(rotateValues, 1, 1);
 
 

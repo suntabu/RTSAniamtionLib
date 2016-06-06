@@ -14,7 +14,8 @@ import android.widget.FrameLayout;
  */
 public class RTSAnimation extends Animation {
 
-    private FittingPath translateMeasure, scaleMeasure, rotateMeasure;
+    private FittingPath translateMeasure, rotateMeasure;
+    private FittingAnimationCurve scaleMeasure;
     private float[] pos = new float[2];
     private float[] scale = new float[2];
     private float[] rotate = new float[2];
@@ -23,7 +24,7 @@ public class RTSAnimation extends Animation {
     private View mView;
     private Rect rect;
 
-    public RTSAnimation(FittingPath translatePath, FittingPath scalePath, FittingPath rotatePath, View view, int width, int height) {
+    public RTSAnimation(FittingPath translatePath, FittingAnimationCurve scalePath, FittingPath rotatePath, View view, int width, int height) {
         translateMeasure = translatePath;
         scaleMeasure = scalePath;
         rotateMeasure = rotatePath;
