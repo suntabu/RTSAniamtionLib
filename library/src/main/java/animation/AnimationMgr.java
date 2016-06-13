@@ -68,8 +68,11 @@ public class AnimationMgr {
                         ((Activity) context).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                LogMgr.i(TAG, "render anim :" + aib.animationName);
-                                renderAnimation(aib.animationName);
+                                if (aib!=null){
+                                    LogMgr.i(TAG, "render anim :" + aib.animationName);
+                                    renderAnimation(aib.animationName);
+                                }
+
                             }
                         });
                         if (queueAnimation.size() > 0) {
