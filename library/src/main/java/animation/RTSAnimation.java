@@ -2,6 +2,7 @@ package animation;
 
 import android.graphics.Matrix;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
@@ -13,8 +14,8 @@ import android.widget.FrameLayout;
  */
 public class RTSAnimation extends Animation {
 
-    private FittingPath  rotateMeasure;
-    private FittingAnimationCurve scaleMeasure,translateMeasure;
+    private FittingPath rotateMeasure;
+    private FittingAnimationCurve scaleMeasure, translateMeasure;
     private float[] pos = new float[2];
     private float[] scale = new float[2];
     private float[] rotate = new float[2];
@@ -45,10 +46,14 @@ public class RTSAnimation extends Animation {
         super.applyTransformation(interpolatedTime, t);
         Matrix matrix = t.getMatrix();
         pos = translateMeasure.getValue(interpolatedTime);
+       // Log.i("RTSAnimation", pos[0] + " | " + pos[1]);
         matrix.preTranslate(-centerX, -centerY);
         if (scaleMeasure != null) {
             scale = scaleMeasure.getValue(interpolatedTime);
-            matrix.postScale(scale[0], scale[1]);
+            if (scale[0] != 0 && scale[1] != 0) {
+                matrix.postScale(scale[0], scale[1]);
+            }
+
 //            matrix.postScale(scale[0], scale[1], rect.centerX(), rect.centerY());
         }
 //        matrix.preTranslate(centerX, centerY);

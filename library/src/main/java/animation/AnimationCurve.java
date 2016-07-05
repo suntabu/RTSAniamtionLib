@@ -12,6 +12,7 @@ import java.util.Comparator;
  */
 public class AnimationCurve {
     private ArrayList<KeyFrame> frames;
+    private float duration = 0;
 
     public AnimationCurve() {
         this.frames = new ArrayList<>();
@@ -27,6 +28,7 @@ public class AnimationCurve {
     public void addKeyFrame(KeyFrame frame) {
         frames.add(frame);
         sortOrder();
+
     }
 
     public void removeKeyFrame(KeyFrame frame) {
@@ -35,37 +37,50 @@ public class AnimationCurve {
 
 
     public float evaluate(float t) {
+        float trueTime = t * duration;
+
+        int index = 0;
+        float value = 0;
         for (int i = 0; i < frames.size(); i++) {
 
             KeyFrame kf = frames.get(i);
-            if (kf.x >= t) {
-                if (i - 1 >= 0) {
-                    KeyFrame pre = frames.get(i - 1);
+            if (kf.x >= trueTime) {
+                index = i - 1;
+            }
+        }
+        if (index >= 0 && frames.size() > 0) {
+            KeyFrame kf = frames.get(index);
+            if (index + 1 < frames.size()) {
+                KeyFrame next = frames.get(index + 1);
 
-                    float xdelta = kf.x - pre.x;
-                    float ydelta = kf.y - pre.y;
-                    if (ydelta == 0 || xdelta == 0) {
-                        return kf.y;
-                    }
-
-                    float k = ydelta / xdelta;
-
-                    float value = k * (t - pre.x) + kf.y;
-                    return value;
+                float xdelta = next.x - kf.x;
+                float ydelta = next.y - kf.y;
+                if (ydelta == 0 || xdelta == 0) {
+                    value = kf.y;
                 } else {
-                    return kf.y;
+                    float k = ydelta / xdelta;
+                    value = k * (trueTime - kf.x) + kf.y;
                 }
+
+            } else {
+                value = kf.y;
             }
 
-
+        } else {
+            value = frames.size() > 0 ? frames.get(0).y : 0;
         }
 
-        return frames.size() > 0 ? frames.get(frames.size() - 1).y : 0;
+        LogMgr.i("AnimationCurve", trueTime + "    |    " + value);
+        return value;
     }
 
 
     private void sortOrder() {
         Collections.sort(frames, new SortByX());
+        if (frames.size() >= 2) {
+            duration = frames.get(frames.size() - 1).x - frames.get(0).x;
+        }
+
     }
 
     class SortByX implements Comparator {

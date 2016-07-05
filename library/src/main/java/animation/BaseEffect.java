@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Path;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -134,14 +135,14 @@ public class BaseEffect {
     }
 
 
-    public void createEffectView(Context context, ViewGroup parent) {
+    public void createEffectView(Context context, ViewGroup parent, String animationName) {
         mGiv = new GifImageView(context);
         this.context = context;
         try {
             mContainer = parent;
             CONTAINER_WIDTH = parent.getWidth();
             CONTAINER_HEIGHT = parent.getHeight();
-            String path = "anim/" + effectName;
+            String path = "anim/" + animationName + "/" + effectName + ".png";
             if (path.toLowerCase().endsWith(".gif")) {
                 GifDrawable gifFromAssets = new GifDrawable(context.getAssets(), path);
                 mGiv.setImageDrawable(gifFromAssets);
@@ -149,8 +150,15 @@ public class BaseEffect {
                 BitmapDrawable gifFromAssets = new BitmapDrawable(context.getAssets().open(path));
                 mGiv.setImageDrawable(gifFromAssets);
             }
-            width = (int) (size.get(0) * CONTAINER_WIDTH);
-            height = (int) (size.get(1) * CONTAINER_HEIGHT);
+            if (size.size() == 2){
+                width = (int) (size.get(0) * CONTAINER_WIDTH);
+                height = (int) (size.get(1) * CONTAINER_HEIGHT);
+            }else {
+                width = (int) (0.15f * CONTAINER_WIDTH);
+                height = (int) (0.15f * CONTAINER_HEIGHT);
+                Log.e("ERROR","animationData.json 沒有給定原始size");
+            }
+
             FrameLayout.LayoutParams tparams = new FrameLayout.LayoutParams(width, height);//定义显示组件参数
             parent.addView(mGiv, tparams);
             mGiv.setVisibility(View.GONE);

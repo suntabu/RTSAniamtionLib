@@ -87,7 +87,7 @@ public class CustomAnimation {
 
     public void spawnEffects(Context context, ViewGroup parent) {
         for (int i = 0; i < effects.size(); i++) {
-            effects.get(i).createEffectView(context, parent);
+            effects.get(i).createEffectView(context, parent,animationName);
         }
     }
 
