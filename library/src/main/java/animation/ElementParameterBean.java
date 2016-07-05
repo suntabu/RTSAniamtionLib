@@ -5,22 +5,23 @@ import java.util.ArrayList;
 /**
  * Created by gouzhun on 2016/6/3.
  */
-public class EffectParameterBean {
-    private String effectName;
+public class ElementParameterBean {
+    private String elementName;
     private float startTime;
     private float stopTime;
     private ArrayList<Float> size;
-    private ArrayList<Float> pathValue;
+    private ArrayList<Float> pathValues;
     private ArrayList<Float> scaleValues;
     private ArrayList<Float> rotateValues;
     private ArrayList<Float> position;
+    private ArrayList<Float> colorValues;
 
-    public String getEffectName() {
-        return effectName;
+    public String getElementName() {
+        return elementName;
     }
 
-    public void setEffectName(String effectName) {
-        this.effectName = effectName;
+    public void setElementName(String elementName) {
+        this.elementName = elementName;
     }
 
     public float getStartTime() {
@@ -47,12 +48,12 @@ public class EffectParameterBean {
         this.size = size;
     }
 
-    public ArrayList<Float> getPathValue() {
-        return pathValue;
+    public ArrayList<Float> getPathValues() {
+        return pathValues;
     }
 
-    public void setPathValue(ArrayList<Float> pathValue) {
-        this.pathValue = pathValue;
+    public void setPathValues(ArrayList<Float> pathValues) {
+        this.pathValues = pathValues;
     }
 
     public ArrayList<Float> getScaleValues() {
@@ -77,6 +78,14 @@ public class EffectParameterBean {
 
     public void setPosition(ArrayList<Float> position) {
         this.position = position;
+    }
+
+    public ArrayList<Float> getColorValues() {
+        return colorValues;
+    }
+
+    public void setColorValues(ArrayList<Float> colorValues) {
+        this.colorValues = colorValues;
     }
 }
 

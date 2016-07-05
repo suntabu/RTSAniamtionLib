@@ -30,13 +30,13 @@ public class CustomAnimation {
 
         duration = animationParameterBean.getDuration();
         animationName = animationParameterBean.getAnimationName();
-        for (int i = 0; i < animationParameterBean.getEffects().size(); i++) {
+        for (int i = 0; i < animationParameterBean.getElements().size(); i++) {
             CustomEffect ce = new CustomEffect();
 
-            EffectParameterBean epb = animationParameterBean.getEffects().get(i);
+            ElementParameterBean epb = animationParameterBean.getElements().get(i);
 
-            ce.setEffectName(epb.getEffectName());
-            ce.setPathValues(epb.getPathValue());
+            ce.setEffectName(epb.getElementName());
+            ce.setPathValues(epb.getPathValues());
             ce.setPosition(epb.getPosition());
             ce.setScaleValues(epb.getScaleValues());
             ce.setRotateValues(epb.getRotateValues());

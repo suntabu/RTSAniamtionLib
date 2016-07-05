@@ -11,7 +11,7 @@ public class AnimationParameterBean {
     /**
      * animationName : dog
      * duration : 5
-     * effects : [{"effectName":"dog.gif","startTime":0.3,"stopTime":2.7,"size":[0.13,0.3],"pathValue":[0.5,0.5,0.9,0.2],"scaleValues":[0.5,0.5,0.9,0.2],"rotateValues":[0.5,0.5,0.9,0.2],"position":[0,0.8]}]
+     * elements : [{"effectName":"dog.gif","startTime":0.3,"stopTime":2.7,"size":[0.13,0.3],"pathValue":[0.5,0.5,0.9,0.2],"scaleValues":[0.5,0.5,0.9,0.2],"rotateValues":[0.5,0.5,0.9,0.2],"position":[0,0.8]}]
      */
 
     private String animationName;
@@ -27,7 +27,7 @@ public class AnimationParameterBean {
      * position : [0,0.8]
      */
 
-    private List<EffectParameterBean> effects;
+    private List<ElementParameterBean> elements;
 
     public String getAnimationName() {
         return animationName;
@@ -45,12 +45,12 @@ public class AnimationParameterBean {
         this.duration = duration;
     }
 
-    public List<EffectParameterBean> getEffects() {
-        return effects;
+    public List<ElementParameterBean> getElements() {
+        return elements;
     }
 
-    public void setEffects(List<EffectParameterBean> effects) {
-        this.effects = effects;
+    public void setElements(List<ElementParameterBean> elements) {
+        this.elements = elements;
     }
 
 
