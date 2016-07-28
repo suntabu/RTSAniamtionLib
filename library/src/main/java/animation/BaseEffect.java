@@ -48,6 +48,8 @@ public class BaseEffect {
 
     private ArrayList<Float> rotateValues;
 
+    private ArrayList<Float> colorValues;
+
     private ArrayList<Float> size;
 
     private ArrayList<Float> position;
@@ -80,10 +82,11 @@ public class BaseEffect {
                             FittingAnimationCurve posPath = new FittingAnimationCurve(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT,startTime,stopTime);
                             FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1,startTime,stopTime);
                             FittingAnimationCurve rotatePath = new FittingAnimationCurve(rotateValues, 1, 1,startTime,stopTime);
+                            FittingAnimationCurve colorPath = new FittingAnimationCurve(colorValues,1,1,startTime,stopTime);
 //                            test.suntabu.com.rtsanimationtest.FittingPath rotatePath = new test.suntabu.com.rtsanimationtest.FittingPath(rotateValues, 1, 1);
 
 
-                            RTSAnimation rts = new RTSAnimation(posPath, scalePath, rotatePath, mGiv, width, height);
+                            RTSAnimation rts = new RTSAnimation(posPath, scalePath, rotatePath,colorPath, mGiv, width, height);
 //                    ScaleAnimation rts = new ScaleAnimation(0.3f,4.3f,0.5f,2.7f);
                             rts.setAnimationListener(new Animation.AnimationListener() {
                                 @Override
@@ -202,5 +205,13 @@ public class BaseEffect {
 
     public void setEffectName(String effectName) {
         this.effectName = effectName;
+    }
+
+    public ArrayList<Float> getColorValues() {
+        return colorValues;
+    }
+
+    public void setColorValues(ArrayList<Float> colorValues) {
+        this.colorValues = colorValues;
     }
 }

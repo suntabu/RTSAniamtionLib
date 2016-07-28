@@ -40,6 +40,7 @@ public class CustomAnimation {
             ce.setPosition(epb.getPosition());
             ce.setScaleValues(epb.getScaleValues());
             ce.setRotateValues(epb.getRotateValues());
+            ce.setColorValues(epb.getColorValues());
             ce.setSize(epb.getSize());
             ce.setStartTime(epb.getStartTime());
             ce.setStopTime(epb.getStopTime());
