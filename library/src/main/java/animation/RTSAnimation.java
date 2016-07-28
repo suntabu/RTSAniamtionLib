@@ -18,6 +18,7 @@ public class RTSAnimation extends Animation {
     private float[] pos = new float[2];
     private float[] scale = new float[2];
     private float[] rotate = new float[2];
+    private float[] color = new float[2];
     float centerX, centerY;
 
     private View mView;

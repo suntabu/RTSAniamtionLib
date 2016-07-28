@@ -20,13 +20,13 @@ public class FittingAnimationCurve {
 
 
 
-    public FittingAnimationCurve(ArrayList<Float> values, int xRatio, int yRatio) {
+    public FittingAnimationCurve(ArrayList<Float> values, int xRatio, int yRatio,float startTime,float stopTime) {
         mValues = values;
         mXRatio = xRatio;
         mYRatio = yRatio;
 
-        xPhasePath = new AnimationCurve();
-        yPhasePath = new AnimationCurve();
+        xPhasePath = new AnimationCurve(startTime,stopTime);
+        yPhasePath = new AnimationCurve(startTime,stopTime);
 
 
         initData();

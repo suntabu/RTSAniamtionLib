@@ -1,5 +1,7 @@
 package animation;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,15 +15,22 @@ import java.util.Comparator;
 public class AnimationCurve {
     private ArrayList<KeyFrame> frames;
     private float duration = 0;
+    private float startTime = 0;
+    private float stopTime =0;
 
-    public AnimationCurve() {
-        this.frames = new ArrayList<>();
-    }
+
 
     public AnimationCurve(ArrayList<KeyFrame> frames) {
         this.frames = new ArrayList<>();
         this.frames.addAll(frames);
         sortOrder();
+    }
+
+    public AnimationCurve(float startTime, float stopTime) {
+        duration = stopTime - startTime;
+        this.startTime = startTime;
+        this.stopTime = stopTime;
+        this.frames = new ArrayList<>();
     }
 
 
@@ -37,9 +46,9 @@ public class AnimationCurve {
 
 
     public float evaluate(float t) {
-        float trueTime = t * duration;
+        float trueTime = t * duration + startTime ;
 
-        int index = 0;
+        int index = -1;
         float value = 0;
         for (int i = 0; i < frames.size(); i++) {
 
@@ -67,19 +76,21 @@ public class AnimationCurve {
             }
 
         } else {
-            value = frames.size() > 0 ? frames.get(0).y : 0;
+            value = frames.size() > 0 ? frames.get( frames.size() - 1).y : 0;
         }
 
-        LogMgr.i("AnimationCurve", trueTime + "    |    " + value);
+        LogMgr.i("AnimationCurve", trueTime + "    |    " + value + "   |    " + t  + "    " + duration + "     " + t *duration);
         return value;
     }
 
 
     private void sortOrder() {
         Collections.sort(frames, new SortByX());
-        if (frames.size() >= 2) {
-            duration = frames.get(frames.size() - 1).x - frames.get(0).x;
-        }
+//        if (frames.size() >= 2) {
+//            duration = frames.get(frames.size() - 1).x - frames.get(0).x;
+//
+//        }
+        duration = stopTime - startTime;
 
     }
 

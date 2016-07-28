@@ -15,7 +15,7 @@ public class AnimationParameterBean {
      */
 
     private String animationName;
-    private int duration;
+    private float duration;
     /**
      * effectName : dog.gif
      * startTime : 0.3
@@ -37,7 +37,7 @@ public class AnimationParameterBean {
         this.animationName = animationName;
     }
 
-    public int getDuration() {
+    public float getDuration() {
         return duration;
     }
 

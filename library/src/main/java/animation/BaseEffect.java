@@ -23,7 +23,7 @@ import pl.droidsonroids.gif.GifImageView;
  */
 public class BaseEffect {
     protected static final float DEFAULT_DURATION = 2f;
-
+    private static final String TAG = "BaseEffect";
 
     protected static int CONTAINER_WIDTH = 0;
     protected static int CONTAINER_HEIGHT = 0;
@@ -77,9 +77,9 @@ public class BaseEffect {
                             //启动动画
                             mGiv.setVisibility(View.VISIBLE);
 
-                            FittingAnimationCurve posPath = new FittingAnimationCurve(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT);
-                            FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1);
-                            FittingAnimationCurve rotatePath = new FittingAnimationCurve(rotateValues, 1, 1);
+                            FittingAnimationCurve posPath = new FittingAnimationCurve(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT,startTime,stopTime);
+                            FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1,startTime,stopTime);
+                            FittingAnimationCurve rotatePath = new FittingAnimationCurve(rotateValues, 1, 1,startTime,stopTime);
 //                            test.suntabu.com.rtsanimationtest.FittingPath rotatePath = new test.suntabu.com.rtsanimationtest.FittingPath(rotateValues, 1, 1);
 
 
@@ -144,6 +144,7 @@ public class BaseEffect {
             CONTAINER_WIDTH = parent.getWidth();
             CONTAINER_HEIGHT = parent.getHeight();
             String path = "anim/" + animationName + "/" + effectName + ".png";
+            Log.e(TAG,"load:"+path);
             if (path.toLowerCase().endsWith(".gif")) {
                 GifDrawable gifFromAssets = new GifDrawable(context.getAssets(), path);
                 mGiv.setImageDrawable(gifFromAssets);
