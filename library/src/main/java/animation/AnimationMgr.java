@@ -68,7 +68,7 @@ public class AnimationMgr {
                         ((Activity) context).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (aib!=null){
+                                if (aib != null) {
                                     LogMgr.i(TAG, "render anim :" + aib.animationName);
                                     renderAnimation(aib.animationName);
                                 }
@@ -93,6 +93,11 @@ public class AnimationMgr {
     public void renderAnimation(AnimationInfoBean aib) {
         LogMgr.i(TAG, "add anim :" + aib.animationName);
         queueAnimation.add(aib);
+    }
+
+    public void destroy() {
+        context = null;
+        this.mContainer = null;
     }
 
     private void renderAnimation(String animationName) {
