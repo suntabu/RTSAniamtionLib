@@ -95,6 +95,11 @@ public class AnimationMgr {
         queueAnimation.add(aib);
     }
 
+    public void destroy() {
+        context = null;
+        this.mContainer = null;
+    }
+
     private void renderAnimation(String animationName) {
         CustomAnimation ca = spawnAniamtion(animationName);
         currentAnim = ca;

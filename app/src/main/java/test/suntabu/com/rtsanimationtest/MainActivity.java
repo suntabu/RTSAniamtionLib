@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 AnimationMgr.getInstance().init(MainActivity.this, container);
 
 
-                AnimationMgr.getInstance().renderAnimation(new AnimationInfoBean("medicine"));
+                AnimationMgr.getInstance().renderAnimation(new AnimationInfoBean("fireworks"));
             }
         });
     }
