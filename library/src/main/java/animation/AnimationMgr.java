@@ -3,7 +3,6 @@ package animation;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.google.gson.Gson;
@@ -13,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created by gouzhun on 2016/5/25.
@@ -68,7 +68,7 @@ public class AnimationMgr {
                         ((Activity) context).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (aib!=null){
+                                if (aib != null) {
                                     LogMgr.i(TAG, "render anim :" + aib.animationName);
                                     renderAnimation(aib.animationName);
                                 }
@@ -145,6 +145,13 @@ public class AnimationMgr {
         }
 
 
+    }
+
+    public AnimationInfoBean getRandomAnimation() {
+        Random ran = new Random();
+        int index = ran.nextInt(animationParameterBeanArrayList.size());
+        AnimationParameterBean paraBean = animationParameterBeanArrayList.get(index);
+        return new AnimationInfoBean(paraBean.getAnimationName());
     }
 
 
