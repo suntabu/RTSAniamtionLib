@@ -156,6 +156,7 @@ public class AnimationMgr {
         Random ran = new Random();
         int index = ran.nextInt(animationParameterBeanArrayList.size());
         AnimationParameterBean paraBean = animationParameterBeanArrayList.get(index);
+        LogMgr.i(TAG, "animation random:" + paraBean.getAnimationName());
         return new AnimationInfoBean(paraBean.getAnimationName());
     }
 

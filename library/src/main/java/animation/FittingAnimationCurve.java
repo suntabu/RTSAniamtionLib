@@ -56,7 +56,7 @@ public class FittingAnimationCurve {
         values[0] = xPhasePath.evaluate(t);
         values[1] = yPhasePath.evaluate(t);
 
-        LogMgr.i("", "values: " + values[0] + "    |    " + values[1]);
+        //LogMgr.i("", "values: " + values[0] + "    |    " + values[1]);
         return values;
     }
 

@@ -79,7 +79,7 @@ public class AnimationCurve {
             value = frames.size() > 0 ? frames.get( frames.size() - 1).y : 0;
         }
 
-        LogMgr.i("AnimationCurve", trueTime + "    |    " + value + "   |    " + t  + "    " + duration + "     " + t *duration);
+        //LogMgr.i("AnimationCurve", trueTime + "    |    " + value + "   |    " + t  + "    " + duration + "     " + t *duration);
         return value;
     }
 
