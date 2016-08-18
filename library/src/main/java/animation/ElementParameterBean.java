@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class ElementParameterBean {
     private String elementName;
+    private String textureName;
     private float startTime;
     private float stopTime;
     private ArrayList<Float> size;
@@ -86,6 +87,14 @@ public class ElementParameterBean {
 
     public void setColorValues(ArrayList<Float> colorValues) {
         this.colorValues = colorValues;
+    }
+
+    public String getTextureName() {
+        return textureName;
+    }
+
+    public void setTextureName(String textureName) {
+        this.textureName = textureName;
     }
 }
 

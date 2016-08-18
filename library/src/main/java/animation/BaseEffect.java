@@ -56,6 +56,8 @@ public class BaseEffect {
 
     private String effectName;
 
+    private String textureName;
+
     private ViewGroup mContainer;
 
     private Context context;
@@ -79,14 +81,14 @@ public class BaseEffect {
                             //启动动画
                             mGiv.setVisibility(View.VISIBLE);
 
-                            FittingAnimationCurve posPath = new FittingAnimationCurve(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT,startTime,stopTime);
-                            FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1,startTime,stopTime);
-                            FittingAnimationCurve rotatePath = new FittingAnimationCurve(rotateValues, 1, 1,startTime,stopTime);
-                            FittingAnimationCurve colorPath = new FittingAnimationCurve(colorValues,1,1,startTime,stopTime);
+                            FittingAnimationCurve posPath = new FittingAnimationCurve(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT, startTime, stopTime);
+                            FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1, startTime, stopTime);
+                            FittingAnimationCurve rotatePath = new FittingAnimationCurve(rotateValues, 1, 1, startTime, stopTime);
+                            FittingAnimationCurve colorPath = new FittingAnimationCurve(colorValues, 1, 1, startTime, stopTime);
 //                            test.suntabu.com.rtsanimationtest.FittingPath rotatePath = new test.suntabu.com.rtsanimationtest.FittingPath(rotateValues, 1, 1);
 
 
-                            RTSAnimation rts = new RTSAnimation(posPath, scalePath, rotatePath,colorPath, mGiv, width, height);
+                            RTSAnimation rts = new RTSAnimation(posPath, scalePath, rotatePath, colorPath, mGiv, width, height);
 //                    ScaleAnimation rts = new ScaleAnimation(0.3f,4.3f,0.5f,2.7f);
                             rts.setAnimationListener(new Animation.AnimationListener() {
                                 @Override
@@ -146,8 +148,8 @@ public class BaseEffect {
             mContainer = parent;
             CONTAINER_WIDTH = parent.getWidth();
             CONTAINER_HEIGHT = parent.getHeight();
-            String path = "anim/" + animationName + "/" + effectName + ".png";
-            Log.e(TAG,"load:"+path);
+            String path = "anim/" + animationName + "/" + textureName + ".png";
+            Log.e(TAG, "load:" + path);
             if (path.toLowerCase().endsWith(".gif")) {
                 GifDrawable gifFromAssets = new GifDrawable(context.getAssets(), path);
                 mGiv.setImageDrawable(gifFromAssets);
@@ -155,13 +157,13 @@ public class BaseEffect {
                 BitmapDrawable gifFromAssets = new BitmapDrawable(context.getAssets().open(path));
                 mGiv.setImageDrawable(gifFromAssets);
             }
-            if (size.size() == 2){
+            if (size.size() == 2) {
                 width = (int) (size.get(0) * CONTAINER_WIDTH);
                 height = (int) (size.get(1) * CONTAINER_HEIGHT);
-            }else {
+            } else {
                 width = (int) (0.15f * CONTAINER_WIDTH);
                 height = (int) (0.15f * CONTAINER_HEIGHT);
-                Log.e("ERROR","animationData.json 沒有給定原始size");
+                Log.e("ERROR", "animationData.json 沒有給定原始size");
             }
 
             FrameLayout.LayoutParams tparams = new FrameLayout.LayoutParams(width, height);//定义显示组件参数
@@ -213,5 +215,9 @@ public class BaseEffect {
 
     public void setColorValues(ArrayList<Float> colorValues) {
         this.colorValues = colorValues;
+    }
+
+    public void setTextureName(String textureName) {
+        this.textureName = textureName;
     }
 }

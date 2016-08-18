@@ -27,8 +27,8 @@ public class AnimationMgr {
     private Context context;
     private FrameLayout mContainer;
 
-    private CustomAnimation currentAnim;
-
+    //    private CustomAnimation currentAnim;
+    private boolean isRendering;
 
     private ArrayList<AnimationParameterBean> animationParameterBeanArrayList;
     private HashMap<Integer, AnimationParameterBean> animationParameterBeanHashMap;
@@ -63,7 +63,8 @@ public class AnimationMgr {
             @Override
             public void run() {
                 while (true) {
-                    if (queueAnimation.size() > 0 && currentAnim == null) {
+                    if (queueAnimation.size() > 0 && !isRendering) {
+                        isRendering = true;
                         final AnimationInfoBean aib = queueAnimation.get(0);
                         ((Activity) context).runOnUiThread(new Runnable() {
                             @Override
@@ -85,6 +86,7 @@ public class AnimationMgr {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                    LogMgr.i(TAG, "isRendering: " + isRendering);
                 }
             }
         }).start();
@@ -102,11 +104,10 @@ public class AnimationMgr {
 
     private void renderAnimation(String animationName) {
         CustomAnimation ca = spawnAniamtion(animationName);
-        currentAnim = ca;
         ca.render(new Delegate() {
             @Override
             public void invoke() {
-                currentAnim = null;
+                isRendering = false;
                 LogMgr.i(TAG, "animation end");
             }
         });

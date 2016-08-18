@@ -3,7 +3,6 @@ package animation;
 import android.content.Context;
 import android.view.ViewGroup;
 
-
 import java.util.ArrayList;
 
 /**
@@ -44,12 +43,13 @@ public class CustomAnimation {
             ce.setSize(epb.getSize());
             ce.setStartTime(epb.getStartTime());
             ce.setStopTime(epb.getStopTime());
-
+            ce.setTextureName(epb.getTextureName());
             effects.add(ce);
         }
     }
 
     public void render(final Delegate delegate) {
+        completedCount = 0;
         for (int i = 0; i < effects.size(); i++) {
             effects.get(i).render(new Delegate() {
                 @Override
@@ -88,7 +88,7 @@ public class CustomAnimation {
 
     public void spawnEffects(Context context, ViewGroup parent) {
         for (int i = 0; i < effects.size(); i++) {
-            effects.get(i).createEffectView(context, parent,animationName);
+            effects.get(i).createEffectView(context, parent, animationName);
         }
     }
 
