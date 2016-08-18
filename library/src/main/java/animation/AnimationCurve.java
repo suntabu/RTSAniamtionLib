@@ -55,6 +55,7 @@ public class AnimationCurve {
             KeyFrame kf = frames.get(i);
             if (kf.x >= trueTime) {
                 index = i - 1;
+                break;
             }
         }
         if (index >= 0 && frames.size() > 0) {

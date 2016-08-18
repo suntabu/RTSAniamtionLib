@@ -86,7 +86,7 @@ public class AnimationMgr {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    LogMgr.i(TAG, "isRendering: " + isRendering);
+//                    LogMgr.i(TAG, "isRendering: " + isRendering);
                 }
             }
         }).start();
