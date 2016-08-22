@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -167,8 +168,9 @@ public class BaseEffect {
                 height = (int) (0.15f * CONTAINER_HEIGHT);
                 Log.e("ERROR", "animationData.json 沒有給定原始size");
             }
-
+            mGiv.setScaleType(ImageView.ScaleType.FIT_XY);
             FrameLayout.LayoutParams tparams = new FrameLayout.LayoutParams(width, height);//定义显示组件参数
+            mGiv.setLayoutParams(tparams);
             parent.addView(mGiv, tparams);
             mGiv.setVisibility(View.GONE);
         } catch (IOException e) {
