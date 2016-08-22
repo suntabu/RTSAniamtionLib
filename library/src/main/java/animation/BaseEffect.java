@@ -80,7 +80,9 @@ public class BaseEffect {
                         public void run() {
                             //启动动画
                             mGiv.setVisibility(View.VISIBLE);
-
+                            pathValues.add(0, position.get(0));
+                            pathValues.add(1, position.get(1));
+                            pathValues.add(2, startTime);
                             FittingAnimationCurve posPath = new FittingAnimationCurve(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT, startTime, stopTime);
                             FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1, startTime, stopTime);
                             FittingAnimationCurve rotatePath = new FittingAnimationCurve(rotateValues, 1, 1, startTime, stopTime);
