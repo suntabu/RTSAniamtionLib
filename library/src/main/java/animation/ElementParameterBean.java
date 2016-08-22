@@ -16,6 +16,7 @@ public class ElementParameterBean {
     private ArrayList<Float> rotateValues;
     private ArrayList<Float> position;
     private ArrayList<Float> colorValues;
+    private float rotate;
 
     public String getElementName() {
         return elementName;
@@ -95,6 +96,14 @@ public class ElementParameterBean {
 
     public void setTextureName(String textureName) {
         this.textureName = textureName;
+    }
+
+    public float getRotate() {
+        return rotate;
+    }
+
+    public void setRotate(float rotate) {
+        this.rotate = rotate;
     }
 }
 

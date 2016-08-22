@@ -59,7 +59,7 @@ public class RTSAnimation extends Animation {
         }
 //        matrix.preTranslate(centerX, centerY);
         rotate = rotateMeasure.getValue(interpolatedTime);
-        matrix.postRotate(rotate[0]);
+        matrix.postRotate(rotate[0] * (-1));
         matrix.postTranslate(pos[0], pos[1]);
 
         if (colorMeasure != null && colorMeasure.size() > 0) {

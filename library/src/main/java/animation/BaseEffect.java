@@ -55,6 +55,8 @@ public class BaseEffect {
 
     private ArrayList<Float> position;
 
+    private float rotate;
+
     private String effectName;
 
     private String textureName;
@@ -84,6 +86,12 @@ public class BaseEffect {
                             pathValues.add(0, position.get(0));
                             pathValues.add(1, position.get(1));
                             pathValues.add(2, startTime);
+
+
+                            rotateValues.add(0, rotate);
+                            rotateValues.add(1, rotate);
+                            rotateValues.add(2, startTime);
+
                             FittingAnimationCurve posPath = new FittingAnimationCurve(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT, startTime, stopTime);
                             FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1, startTime, stopTime);
                             FittingAnimationCurve rotatePath = new FittingAnimationCurve(rotateValues, 1, 1, startTime, stopTime);
@@ -230,5 +238,9 @@ public class BaseEffect {
 
     public void setTextureName(String textureName) {
         this.textureName = textureName;
+    }
+
+    public void setRotate(float rotate) {
+        this.rotate = rotate;
     }
 }

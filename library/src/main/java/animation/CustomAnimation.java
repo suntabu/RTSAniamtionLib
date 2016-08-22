@@ -44,6 +44,7 @@ public class CustomAnimation {
             ce.setStartTime(epb.getStartTime());
             ce.setStopTime(epb.getStopTime());
             ce.setTextureName(epb.getTextureName());
+            ce.setRotate(epb.getRotate());
             effects.add(ce);
         }
     }
