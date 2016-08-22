@@ -57,6 +57,9 @@ public class CustomAnimation {
                     completedCount++;
                     if (completedCount == effects.size()) {
                         delegate.invoke();
+                        for (int j = 0; j < effects.size(); j++) {
+                            effects.get(j).dispose();
+                        }
                     }
                 }
             });

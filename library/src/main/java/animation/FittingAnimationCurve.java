@@ -60,6 +60,8 @@ public class FittingAnimationCurve {
         return values;
     }
 
-
+    public int size(){
+        return mValues.size();
+    }
 
 }

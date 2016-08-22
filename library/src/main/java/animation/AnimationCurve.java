@@ -1,7 +1,5 @@
 package animation;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -16,8 +14,7 @@ public class AnimationCurve {
     private ArrayList<KeyFrame> frames;
     private float duration = 0;
     private float startTime = 0;
-    private float stopTime =0;
-
+    private float stopTime = 0;
 
 
     public AnimationCurve(ArrayList<KeyFrame> frames) {
@@ -46,7 +43,7 @@ public class AnimationCurve {
 
 
     public float evaluate(float t) {
-        float trueTime = t * duration + startTime ;
+        float trueTime = t * duration + startTime;
 
         int index = -1;
         float value = 0;
@@ -54,7 +51,7 @@ public class AnimationCurve {
 
             KeyFrame kf = frames.get(i);
             if (kf.x >= trueTime) {
-                index = i - 1;
+                index = i - 1 < 0 ? 0 : i - 1;
                 break;
             }
         }
@@ -77,7 +74,7 @@ public class AnimationCurve {
             }
 
         } else {
-            value = frames.size() > 0 ? frames.get( frames.size() - 1).y : 0;
+            value = frames.size() > 0 ? frames.get(frames.size() - 1).y : 0;
         }
 
         //LogMgr.i("AnimationCurve", trueTime + "    |    " + value + "   |    " + t  + "    " + duration + "     " + t *duration);

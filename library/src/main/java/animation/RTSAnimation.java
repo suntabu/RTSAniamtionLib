@@ -3,10 +3,10 @@ package animation;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 
 /**
@@ -62,10 +62,13 @@ public class RTSAnimation extends Animation {
         matrix.postRotate(rotate[0]);
         matrix.postTranslate(pos[0], pos[1]);
 
-        if (colorMeasure != null) {
+        if (colorMeasure != null && colorMeasure.size() > 0) {
             color = colorMeasure.getValue(interpolatedTime);
-            t.setAlpha(color[0]);
+            ((ImageView) mView).setAlpha((int) (color[0] * 255));
+        } else {
+            ((ImageView) mView).setAlpha((int) (255));
         }
+
 
     }
 

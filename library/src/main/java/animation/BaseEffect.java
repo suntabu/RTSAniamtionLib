@@ -80,7 +80,7 @@ public class BaseEffect {
                         @Override
                         public void run() {
                             //启动动画
-                            mGiv.setVisibility(View.VISIBLE);
+
                             pathValues.add(0, position.get(0));
                             pathValues.add(1, position.get(1));
                             pathValues.add(2, startTime);
@@ -102,11 +102,6 @@ public class BaseEffect {
                                 @Override
                                 public void onAnimationEnd(Animation animation) {
                                     delegate.invoke();
-                                    mGiv.setVisibility(View.GONE);
-                                    mContainer.removeView(mGiv);
-                                    mGiv = null;
-                                    mContainer = null;
-                                    context = null;
                                 }
 
                                 @Override
@@ -118,13 +113,15 @@ public class BaseEffect {
                             rts.setDuration((long) (1000 * (stopTime - startTime)));
 
                             mGiv.startAnimation(rts);
-                            mStarted = false;
+//                            mGiv.setVisibility(View.VISIBLE);
+                            mStarted = true;
                         }
                     });
 
                 }
             }
         }, (long) (startTime * 1000));
+
 
     }
 
@@ -172,13 +169,23 @@ public class BaseEffect {
             FrameLayout.LayoutParams tparams = new FrameLayout.LayoutParams(width, height);//定义显示组件参数
             mGiv.setLayoutParams(tparams);
             parent.addView(mGiv, tparams);
-            mGiv.setVisibility(View.GONE);
+//            mGiv.setVisibility(View.INVISIBLE);
+            mGiv.setAlpha(0);
         } catch (IOException e) {
-            mGiv = null;
+            dispose();
             e.printStackTrace();
         }
+    }
 
+    public void dispose() {
+        if (mGiv != null) {
+            mGiv.setVisibility(View.GONE);
+            mContainer.removeView(mGiv);
+            mGiv = null;
 
+        }
+        mContainer = null;
+        context = null;
     }
 
     public void setStartTime(float startTime) {
