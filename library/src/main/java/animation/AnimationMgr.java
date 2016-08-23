@@ -26,6 +26,7 @@ public class AnimationMgr {
 
     private Context context;
     private FrameLayout mContainer;
+    private boolean working = true;
 
     //    private CustomAnimation currentAnim;
     private boolean isRendering;
@@ -62,7 +63,7 @@ public class AnimationMgr {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+                while (working) {
                     if (queueAnimation.size() > 0 && !isRendering) {
                         isRendering = true;
                         final AnimationInfoBean aib = queueAnimation.get(0);
@@ -100,6 +101,7 @@ public class AnimationMgr {
     public void destroy() {
         context = null;
         this.mContainer = null;
+        working = false;
     }
 
     private void renderAnimation(String animationName) {

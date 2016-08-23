@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
 //                AnimationMgr.getInstance().renderAnimation(AnimationMgr.getInstance().getRandomAnimation());
 
-                AnimationMgr.getInstance().renderAnimation(new AnimationInfoBean("like"));
+                AnimationMgr.getInstance().renderAnimation(new AnimationInfoBean("520"));
             }
         });
     }
