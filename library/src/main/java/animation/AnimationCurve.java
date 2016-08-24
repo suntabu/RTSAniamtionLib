@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 /**
  * Created by gouzhun on 2016/6/6.
- * <p/>
+ * <p>
  * just like unity's animationcurve,but only implemented linear type
  * http://docs.unity3d.com/ScriptReference/AnimationCurve.html
  */

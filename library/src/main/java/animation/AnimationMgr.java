@@ -65,6 +65,8 @@ public class AnimationMgr {
             public void run() {
                 while (working) {
                     if (queueAnimation.size() > 0 && !isRendering) {
+
+
                         isRendering = true;
                         final AnimationInfoBean aib = queueAnimation.get(0);
                         ((Activity) context).runOnUiThread(new Runnable() {

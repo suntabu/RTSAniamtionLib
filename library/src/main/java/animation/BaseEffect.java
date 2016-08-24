@@ -92,6 +92,11 @@ public class BaseEffect {
                             rotateValues.add(1, rotate);
                             rotateValues.add(2, startTime);
 
+                            scaleValues.add(0, 1f);
+                            scaleValues.add(1, 1f);
+                            scaleValues.add(2, 0f);
+
+
                             FittingAnimationCurve posPath = new FittingAnimationCurve(pathValues, CONTAINER_WIDTH, CONTAINER_HEIGHT, startTime, stopTime);
                             FittingAnimationCurve scalePath = new FittingAnimationCurve(scaleValues, 1, 1, startTime, stopTime);
                             FittingAnimationCurve rotatePath = new FittingAnimationCurve(rotateValues, 1, 1, startTime, stopTime);
